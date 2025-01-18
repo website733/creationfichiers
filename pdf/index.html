@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générer un PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <h1>Exemple de génération de PDF avec HTML et jsPDF</h1>
+
+    <div id="content">
+        <p>Bonjour, ceci est un texte qui sera inclus dans le fichier PDF.</p>
+        <p>Voici un exemple de fichier PDF généré à partir de contenu HTML.</p>
+    </div>
+
+    <button id="generate-pdf">Générer le PDF</button>
+
+    <script>
+        // Attendez que la page soit chargée pour exécuter le script
+        document.getElementById('generate-pdf').addEventListener('click', function() {
+            // Utiliser jsPDF pour générer le PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Récupérer le contenu HTML
+            const content = document.getElementById('content').innerText;
+
+            // Ajouter du contenu au PDF
+            doc.text(content, 10, 10);
+
+            // Sauvegarder le fichier PDF
+            doc.save('exemple.pdf');
+        });
+    </script>
+
+</body>
+</html>
