@@ -77,41 +77,18 @@
     </header>
     <main>
         <p>Ajoutez des fichiers à inclure dans votre archive RAR. Vous pouvez également définir un mot de passe pour protéger l'archive.</p>
-        <input type="file" id="rarFiles" multiple />
-        <input type="password" id="rarPassword" placeholder="Mot de passe (facultatif)" />
-        <button onclick="createRarFile()">Télécharger</button>
+        <form id="rarForm" method="POST" action="/create-rar" enctype="multipart/form-data">
+            <input type="file" name="files" id="rarFiles" multiple required />
+            <input type="password" name="password" id="rarPassword" placeholder="Mot de passe (facultatif)" />
+            <button type="submit">Créer l'archive RAR</button>
+        </form>
     </main>
     <footer>
         <p>&copy; 2025 Créateur de Fichiers Gratuit. Aucun compte requis, aucune donnée enregistrée.</p>
     </footer>
+</body>
+</html>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script>
-        async function createRarFile() {
-            const files = document.getElementById('rarFiles').files;
-            const password = document.getElementById('rarPassword').value;
-
-            if (files.length === 0) {
-                alert('Veuillez sélectionner au moins un fichier.');
-                return;
-            }
-
-            const zip = new JSZip();
-            for (let file of files) {
-                const content = await file.arrayBuffer();
-                zip.file(file.name, content);
-            }
-
-            if (password) {
-                alert('JSZip ne supporte pas directement le chiffrement avec mot de passe pour les fichiers RAR. Un mot de passe simulé sera affiché.');
-                console.log(`Mot de passe défini : ${password}`);
-            }
-
-            zip.generateAsync({ type: 'blob' }).then(blob => {
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'archive.rar';
-                link.click();
             });
         }
     </script>
