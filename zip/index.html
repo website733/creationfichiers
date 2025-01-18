@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de Fichiers ZIP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        input, button {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+
+        button {
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #f1f1f1;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Créateur de Fichiers ZIP</h1>
+    </header>
+    <main>
+        <p>Ajoutez des fichiers à inclure dans votre archive ZIP. Une fois prêt, cliquez sur "Télécharger" pour récupérer votre fichier ZIP.</p>
+        <input type="file" id="zipFiles" multiple />
+        <button onclick="createZipFile()">Télécharger</button>
+    </main>
+    <footer>
+        <p>&copy; 2025 Créateur de Fichiers Gratuit. Aucun compte requis, aucune donnée enregistrée.</p>
+    </footer>
+
+    <script>
+        async function createZipFile() {
+            const files = document.getElementById('zipFiles').files;
+            if (files.length === 0) {
+                alert('Veuillez sélectionner au moins un fichier.');
+                return;
+            }
+
+            const zip = new JSZip();
+            for (let file of files) {
+                const content = await file.arrayBuffer();
+                zip.file(file.name, content);
+            }
+
+            zip.generateAsync({ type: 'blob' }).then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'archive.zip';
+                link.click();
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</body>
+</html>
