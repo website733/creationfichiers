@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de Fichiers JS - PY - HTML</title>
+</head>
+<body>
+
+    <h1>Créateur de fichiers .html, .js et .py</h1>
+    <p>Entrez votre code et générez le fichier souhaité.</p>
+
+    <!-- Création du fichier HTML -->
+    <h2>Créer un fichier HTML</h2>
+    <textarea id="htmlContent" rows="10" cols="50" placeholder="Entrez votre code HTML ici"></textarea><br><br>
+    <button onclick="createFile('html')">Créer le fichier HTML</button><br><br>
+
+    <!-- Création du fichier JavaScript -->
+    <h2>Créer un fichier JavaScript</h2>
+    <textarea id="jsContent" rows="10" cols="50" placeholder="Entrez votre code JavaScript ici"></textarea><br><br>
+    <button onclick="createFile('js')">Créer le fichier JavaScript</button><br><br>
+
+    <!-- Création du fichier Python -->
+    <h2>Créer un fichier Python</h2>
+    <textarea id="pyContent" rows="10" cols="50" placeholder="Entrez votre code Python ici"></textarea><br><br>
+    <button onclick="createFile('py')">Créer le fichier Python</button><br><br>
+
+    <script>
+        function createFile(type) {
+            let content;
+            let filename;
+
+            // Selon le type de fichier, on récupère le contenu et on définit le nom du fichier
+            if (type === 'html') {
+                content = document.getElementById('htmlContent').value;
+                filename = 'fichier.html';
+            } else if (type === 'js') {
+                content = document.getElementById('jsContent').value;
+                filename = 'fichier.js';
+            } else if (type === 'py') {
+                content = document.getElementById('pyContent').value;
+                filename = 'fichier.py';
+            }
+
+            // Créer un Blob à partir du contenu
+            const blob = new Blob([content], { type: 'text/plain' });
+
+            // Créer un lien de téléchargement
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+
+            // Simuler le clic sur le lien pour télécharger le fichier
+            link.click();
+        }
+    </script>
+
+</body>
+</html>
