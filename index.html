@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur de Fichiers Gratuit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .file-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .file-options button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .file-options button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #f1f1f1;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Créateur de Fichiers Gratuit</h1>
+    </header>
+    <main>
+        <p>Bienvenue ! Créez vos fichiers texte, RAR, ZIP, Word, LibreOffice et OpenOffice gratuitement et sans compte. Aucune donnée n'est enregistrée : téléchargez simplement votre fichier une fois terminé.</p>
+        <div class="file-options">
+            <button onclick="createFile('text')">Créer un fichier Texte</button>
+            <button onclick="createFile('rar')">Créer un fichier RAR</button>
+            <button onclick="createFile('zip')">Créer un fichier ZIP</button>
+            <button onclick="createFile('word')">Créer un fichier Word</button>
+            <button onclick="createFile('libreoffice')">Créer un fichier LibreOffice</button>
+            <button onclick="createFile('openoffice')">Créer un fichier OpenOffice</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Créateur de Fichiers Gratuit. Aucun compte requis, aucune donnée enregistrée.</p>
+    </footer>
+
+    <script>
+        function createFile(type) {
+            alert(`Fonctionnalité à implémenter pour créer un fichier de type: ${type}`);
+        }
+    </script>
+</body>
+</html>
